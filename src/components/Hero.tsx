@@ -1,4 +1,27 @@
+import {
+    SiPhp,
+    SiTypescript,
+    SiJavascript,
+    SiVuedotjs,
+    SiQuasar,
+    SiPython,
+    SiHtml5,
+    SiCss3,
+    SiNextdotjs,
+} from "react-icons/si";
 import '../styles/hero.css';
+
+const techStack = [
+    { icon: SiPhp, label: "PHP" },
+    { icon: SiTypescript, label: "TypeScript" },
+    { icon: SiJavascript, label: "JavaScript" },
+    { icon: SiVuedotjs, label: "Vue 3" },
+    { icon: SiQuasar, label: "Quasar" },
+    { icon: SiPython, label: "Python" },
+    { icon: SiNextdotjs, label: "Next.js" },
+    { icon: SiHtml5, label: "HTML" },
+    { icon: SiCss3, label: "CSS" },
+];
 
 export default function Hero() {
     return (
@@ -23,6 +46,17 @@ export default function Hero() {
 
                 <div className="hero-image">
                     <img src="/cropped.jpg" alt="Jerald Punzalan" />
+                </div>
+            </div>
+
+            <div className="hero-stack">
+                <span className="hero-stack__label">Techstack</span>
+                <div className="hero-stack__icons">
+                    {techStack.map(({ icon: Icon, label }) => (
+                        <span key={label} className="hero-stack__item" title={label}>
+                            <Icon />
+                        </span>
+                    ))}
                 </div>
             </div>
         </section>
