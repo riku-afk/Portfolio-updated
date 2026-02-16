@@ -9,8 +9,19 @@
 }
 
 .nav-container {
+    max-width: 1100px;
+    margin: 0 auto;
     display: flex;
     justify-content: center;
+    align-items: center;
+}
+
+/* ==============================
+   Links
+   ============================== */
+
+.nav-links {
+    display: flex;
     align-items: center;
     gap: 3rem;
 }
@@ -19,16 +30,63 @@
     color: #E6E9F0;
     text-decoration: none;
     font-weight: 500;
-    font-size: 1rem;
-    transition: color 0.2s ease, transform 0.2s ease;
+    font-size: 0.95rem;
+    transition: color 0.2s ease;
 }
 
 .nav-link:hover {
-    color: #61dafb;
-    transform: translateY(-2px);
+    color: #646cff;
 }
 
-.nav-link.active {
-    color: #61dafb;
-    font-weight: 600;
+/* ==============================
+   Hamburger (hidden on desktop)
+   ============================== */
+
+.nav-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: #E6E9F0;
+    font-size: 1.4rem;
+    cursor: pointer;
+    padding: 4px;
+    line-height: 1;
+}
+
+/* ==============================
+   Mobile
+   ============================== */
+
+@media (max-width: 600px) {
+    .nav-container {
+        justify-content: flex-end;
+    }
+
+    .nav-toggle {
+        display: flex;
+        z-index: 10;
+    }
+
+    .nav-links {
+        position: fixed;
+        inset: 0;
+        flex-direction: column;
+        justify-content: center;
+        gap: 2rem;
+        background-color: #0B0F1A;
+        z-index: 9;
+
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.25s ease;
+    }
+
+    .nav-links--open {
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    .nav-link {
+        font-size: 1.25rem;
+    }
 }
