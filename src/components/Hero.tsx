@@ -32,7 +32,7 @@ export default function Hero() {
                     <h1 className="hero-name">Jerald Punzalan</h1>
                     <p className="hero-role">Web Developer</p>
                     <p className="hero-description">
-                        I build scalable APIs with PHP (Slim) and TypeScript, and create modern frontends using Quasar (Vue 3). I apply structured models and clean architecture across the stack, leveraging Python for microservices and processing workloads.
+                        I design and develop scalable backend systems and modern frontends, applying clean architecture and structured domain models across the stack. I architect efficient services and distributed components to handle complex processing workloads.
                     </p>
                     <div className="hero-cta">
                         <a href="#projects" className="hero-cta__primary">
