@@ -29,8 +29,8 @@ export const projects: Project[] = [
         title: "Pulse AI — Generative Wellness Coach",
         description:
             "A generative AI coach for wellness, providing personalized health guidance through conversational AI.",
-        technologies: ["React Native"],
-        github: "https://github.com/riku-afk/Pulse-Wellness-AI-coach/tree/main/Pulse",
-        status: "in-progress",
+        technologies: ["React Native", "Expo", "TypeScript", "OpenAI API", "Firebase"],
+        github: "https://github.com/riku-afk/Pulse-Wellness-AI-coach/tree/main",
+        status: "completed",
     },
 ];

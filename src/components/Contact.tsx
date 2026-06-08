@@ -18,7 +18,7 @@ export default function Contact() {
                     target="_blank"
                     rel="noreferrer"
                     aria-label="GitHub"
-                    className="contact-icon"
+                    className="contact-icon contact-icon--github"
                 >
                     <FaGithub />
                     <span>GitHub</span>
@@ -29,7 +29,7 @@ export default function Contact() {
                     target="_blank"
                     rel="noreferrer"
                     aria-label="LinkedIn"
-                    className="contact-icon"
+                    className="contact-icon contact-icon--linkedin"
                 >
                     <FaLinkedin />
                     <span>LinkedIn</span>
@@ -38,7 +38,7 @@ export default function Contact() {
                 <a
                     href="mailto:jeraldpunzalan201@gmail.com"
                     aria-label="Email"
-                    className="contact-icon"
+                    className="contact-icon contact-icon--email"
                 >
                     <MdEmail />
                     <span>Email</span>
@@ -49,7 +49,7 @@ export default function Contact() {
                     target="_blank"
                     rel="noreferrer"
                     aria-label="Facebook"
-                    className="contact-icon"
+                    className="contact-icon contact-icon--facebook"
                 >
                     <FaFacebook />
                     <span>Facebook</span>

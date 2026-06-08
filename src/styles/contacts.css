@@ -48,18 +48,50 @@
     font-size: 0.78rem;
     font-weight: 500;
 
-    transition: border-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+    transition: border-color 0.25s ease, color 0.25s ease,
+        transform 0.2s ease, box-shadow 0.25s ease;
 }
 
 .contact-icon svg {
     width: 24px;
     height: 24px;
+    transition: transform 0.2s ease;
 }
 
 .contact-icon:hover {
-    color: #e6e9f0;
-    border-color: #2a3160;
-    transform: translateY(-3px);
+    transform: translateY(-4px);
+}
+
+.contact-icon:hover svg {
+    transform: scale(1.1);
+}
+
+/* ==============================
+   Brand colors on hover
+   ============================== */
+
+.contact-icon--github:hover {
+    color: #f0f6fc;
+    border-color: #444c56;
+    box-shadow: 0 6px 20px rgba(240, 246, 252, 0.06), 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.contact-icon--linkedin:hover {
+    color: #0A66C2;
+    border-color: #0A66C2;
+    box-shadow: 0 6px 20px rgba(10, 102, 194, 0.18), 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.contact-icon--email:hover {
+    color: #EA4335;
+    border-color: #EA4335;
+    box-shadow: 0 6px 20px rgba(234, 67, 53, 0.18), 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.contact-icon--facebook:hover {
+    color: #1877F2;
+    border-color: #1877F2;
+    box-shadow: 0 6px 20px rgba(24, 119, 242, 0.18), 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 /* ==============================
