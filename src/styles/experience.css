@@ -1,48 +1,59 @@
-/* ==============================
-   Section Header
-   ============================== */
+/* =============================================
+   SECTION HEADER
+   ============================================= */
 
 .experience-header {
     margin-bottom: 2.5rem;
 }
 
-.experience-header__title {
-    color: #e6e9f0;
-    font-size: 1.75rem;
-    font-weight: 700;
-    margin-bottom: 0.35rem;
-}
-
-.experience-header__subtitle {
-    color: #6b7280;
-    font-size: 0.95rem;
-}
-
-/* ==============================
-   Timeline List
-   ============================== */
+/* =============================================
+   TIMELINE LIST
+   ============================================= */
 
 .experience-list {
     display: flex;
     flex-direction: column;
-    gap: 1.25rem;
+    gap: 1rem;
 }
 
-/* ==============================
-   Card
-   ============================== */
+/* =============================================
+   CARD BASE
+   ============================================= */
 
 .experience-card {
     position: relative;
     overflow: hidden;
-    background-color: #12172a;
-    border: 1px solid #1e243d;
-    border-radius: 10px;
+    background-color: var(--clr-surface);
+    border: 1px solid var(--clr-border);
+    border-radius: var(--r-lg);
     padding: 1.5rem 1.75rem;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.25s ease;
+
+    /* Scroll-reveal initial state */
+    opacity: 0;
+    transform: translateY(18px);
+
+    transition:
+        opacity          0.6s  cubic-bezier(0.16, 1, 0.3, 1),
+        transform        0.6s  cubic-bezier(0.16, 1, 0.3, 1),
+        border-color     200ms cubic-bezier(0.4, 0, 0.2, 1),
+        box-shadow       200ms cubic-bezier(0.4, 0, 0.2, 1),
+        background-color 200ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* left accent bar on hover */
+/* Scroll-reveal visible state */
+.experience-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+    /* After reveal, faster transform timing for hover response */
+    transition:
+        opacity          0.6s  cubic-bezier(0.16, 1, 0.3, 1),
+        transform        260ms cubic-bezier(0.25, 1, 0.5, 1),
+        border-color     200ms cubic-bezier(0.4, 0, 0.2, 1),
+        box-shadow       200ms cubic-bezier(0.4, 0, 0.2, 1),
+        background-color 200ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Left accent bar */
 .experience-card::before {
     content: '';
     position: absolute;
@@ -50,85 +61,136 @@
     top: 0;
     bottom: 0;
     width: 3px;
-    background: linear-gradient(to bottom, #646cff, #535bf2);
-    border-radius: 10px 0 0 10px;
+    background: linear-gradient(to bottom, var(--clr-accent), var(--clr-accent-dark));
+    border-radius: var(--r-lg) 0 0 var(--r-lg);
     opacity: 0;
-    transition: opacity 0.3s ease;
+    transform: scaleY(0.6);
+    transform-origin: center;
+    transition:
+        opacity   var(--ease-base),
+        transform var(--ease-lift);
 }
 
 .experience-card:hover::before {
     opacity: 1;
+    transform: scaleY(1);
 }
 
-.experience-card:hover {
-    border-color: #2a3160;
-    box-shadow: 0 0 20px rgba(100, 108, 255, 0.07),
-        0 6px 20px rgba(0, 0, 0, 0.28);
-    transform: translateX(4px);
+.experience-card.visible:hover {
+    border-color: var(--clr-border-active);
+    background-color: var(--clr-surface-hover);
+    box-shadow: 0 0 24px rgba(100, 108, 255, 0.07), var(--shadow-sm);
+    transform: translateX(5px);
 }
 
-/* ==============================
-   Card Content
-   ============================== */
+/* =============================================
+   CURRENT ROLE
+   ============================================= */
+
+.experience-card--current {
+    border-color: rgba(100, 108, 255, 0.2);
+}
+
+.experience-card--current::before {
+    opacity: 1;
+    transform: scaleY(1);
+}
+
+/* =============================================
+   CARD CONTENT
+   ============================================= */
 
 .experience-card__header {
     display: flex;
     justify-content: space-between;
-    align-items: baseline;
+    align-items: flex-start;
     gap: 1rem;
-    margin-bottom: 0.25rem;
+    margin-bottom: 0.3rem;
+    flex-wrap: wrap;
+}
+
+.experience-card__title-group {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+    min-width: 0;
 }
 
 .experience-card__title {
-    color: #e6e9f0;
-    font-size: 1.1rem;
+    color: var(--clr-text-primary);
+    font-size: 1.05rem;
     font-weight: 600;
     line-height: 1.4;
+    letter-spacing: -0.015em;
+    transition: color var(--ease-fast);
+}
+.experience-card:hover .experience-card__title { color: #fff; }
+
+.experience-card__current-badge {
+    padding: 2px 8px;
+    border-radius: var(--r-full);
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    background-color: var(--clr-accent-muted);
+    color: var(--clr-accent);
+    border: 1px solid rgba(100, 108, 255, 0.2);
+    white-space: nowrap;
+    flex-shrink: 0;
 }
 
 .experience-card__date {
-    color: #6b7280;
-    font-size: 0.8rem;
+    color: var(--clr-text-secondary);
+    font-size: 0.78rem;
+    font-weight: 500;
     white-space: nowrap;
     flex-shrink: 0;
-    background-color: rgba(100, 108, 255, 0.07);
-    padding: 2px 8px;
-    border-radius: 999px;
-    border: 1px solid rgba(100, 108, 255, 0.12);
+    padding: 3px 9px;
+    background-color: var(--clr-accent-subtle);
+    border: 1px solid var(--clr-border);
+    border-radius: var(--r-full);
+    transition: border-color var(--ease-fast), background-color var(--ease-fast);
+}
+.experience-card:hover .experience-card__date {
+    border-color: var(--clr-border-active);
+    background-color: var(--clr-accent-muted);
 }
 
 .experience-card__where {
-    color: #7c83b8;
-    font-size: 0.88rem;
+    color: var(--clr-text-tertiary);
+    font-size: 0.875rem;
     font-weight: 500;
     margin-bottom: 0.75rem;
+    letter-spacing: -0.01em;
 }
 
 .experience-card__description {
-    color: #8892b0;
-    font-size: 0.88rem;
-    line-height: 1.65;
+    color: var(--clr-text-secondary);
+    font-size: 0.875rem;
+    line-height: 1.7;
 }
 
-/* ==============================
-   Responsive
-   ============================== */
+/* =============================================
+   RESPONSIVE
+   ============================================= */
 
 @media (max-width: 600px) {
     .experience-card__header {
         flex-direction: column;
-        gap: 0.35rem;
+        gap: 0.5rem;
     }
 
-    .experience-card__title {
-        font-size: 1rem;
-    }
+    .experience-card { padding: 1.25rem 1.4rem; }
 
-    .experience-card {
-        padding: 1.25rem;
+    /* On mobile, replace X-slide hover with a subtle lift instead */
+    .experience-card.visible:hover {
+        transform: translateY(-2px);
     }
+}
 
-    .experience-card:hover {
-        transform: none;
-    }
+@media (max-width: 380px) {
+    .experience-card { padding: 1rem 1.1rem; }
+    .experience-card__title { font-size: 0.95rem; }
 }

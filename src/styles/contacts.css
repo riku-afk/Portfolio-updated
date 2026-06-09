@@ -1,116 +1,199 @@
-/* ==============================
-   Section Header
-   ============================== */
+/* =============================================
+   SECTION HEADER
+   ============================================= */
 
 .contact-header {
-    text-align: center;
     margin-bottom: 2.5rem;
 }
 
-.contact-header__title {
-    color: #e6e9f0;
-    font-size: 1.75rem;
-    font-weight: 700;
-    margin-bottom: 0.35rem;
-}
+/* =============================================
+   BODY LAYOUT
+   ============================================= */
 
-.contact-header__subtitle {
-    color: #6b7280;
-    font-size: 0.95rem;
-}
-
-/* ==============================
-   Icon Grid
-   ============================== */
-
-.contact-icons {
+.contact-body {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+/* =============================================
+   EMAIL CTA CARD
+   ============================================= */
+
+.contact-cta {
+    background-color: var(--clr-surface);
+    border: 1px solid var(--clr-border);
+    border-radius: var(--r-lg);
+    padding: 2rem 2.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
     flex-wrap: wrap;
-    gap: 1rem;
+    transition:
+        opacity          0.65s cubic-bezier(0.16, 1, 0.3, 1),
+        transform        0.65s cubic-bezier(0.16, 1, 0.3, 1),
+        border-color     200ms cubic-bezier(0.4, 0, 0.2, 1),
+        box-shadow       200ms cubic-bezier(0.4, 0, 0.2, 1),
+        background-color 200ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.contact-cta:hover {
+    border-color: var(--clr-border-active);
+    background-color: var(--clr-surface-hover);
+    box-shadow: var(--shadow-accent);
+}
+
+.contact-cta__text {
+    color: var(--clr-text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.75;
+    max-width: 520px;
+    flex: 1;
+}
+
+.contact-cta__button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.65rem 1.4rem;
+    background-color: var(--clr-accent);
+    color: #fff;
+    border-radius: var(--r-md);
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-decoration: none;
+    white-space: nowrap;
+    flex-shrink: 0;
+    transition:
+        background-color var(--ease-fast),
+        transform        var(--ease-lift),
+        box-shadow       var(--ease-base);
+}
+
+/* Mail icon */
+.contact-cta__button svg:first-child {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+}
+
+/* Arrow icon — slides right on hover */
+.contact-cta__button svg:last-child {
+    width: 15px;
+    height: 15px;
+    flex-shrink: 0;
+    transition: transform var(--ease-lift);
+}
+
+.contact-cta__button:hover {
+    background-color: var(--clr-accent-dark);
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-accent-lift);
+}
+.contact-cta__button:hover svg:last-child {
+    transform: translateX(3px);
+}
+.contact-cta__button:active {
+    transform: translateY(0) scale(0.97);
+    transition-duration: 80ms;
+}
+
+/* =============================================
+   SOCIAL ICON GRID
+   ============================================= */
+
+.contact-socials {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    transition:
+        opacity   0.65s cubic-bezier(0.16, 1, 0.3, 1),
+        transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .contact-icon {
     display: flex;
-    flex-direction: column;
     align-items: center;
-    gap: 0.5rem;
-
-    width: 110px;
-    padding: 1.25rem 1rem;
-
-    background-color: #12172a;
-    border: 1px solid #1e243d;
-    border-radius: 10px;
-
-    color: #8892b0;
+    gap: 0.6rem;
+    padding: 0.65rem 1.1rem;
+    background-color: var(--clr-surface);
+    border: 1px solid var(--clr-border);
+    border-radius: var(--r-md);
+    color: var(--clr-text-secondary);
     text-decoration: none;
-    font-size: 0.78rem;
+    font-size: 0.85rem;
     font-weight: 500;
-
-    transition: border-color 0.25s ease, color 0.25s ease,
-        transform 0.2s ease, box-shadow 0.25s ease;
+    /* color/bg/border fast, lift spring */
+    transition:
+        border-color     var(--ease-fast),
+        color            var(--ease-fast),
+        background-color var(--ease-fast),
+        transform        var(--ease-spring),
+        box-shadow       var(--ease-base);
 }
 
 .contact-icon svg {
-    width: 24px;
-    height: 24px;
-    transition: transform 0.2s ease;
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    transition: transform var(--ease-spring);
 }
 
 .contact-icon:hover {
     transform: translateY(-4px);
 }
-
-.contact-icon:hover svg {
-    transform: scale(1.1);
+.contact-icon:hover svg { transform: scale(1.15); }
+.contact-icon:active {
+    transform: translateY(-2px) scale(0.97);
+    transition-duration: 80ms;
 }
 
-/* ==============================
-   Brand colors on hover
-   ============================== */
-
+/* Brand colours on hover */
 .contact-icon--github:hover {
     color: #f0f6fc;
     border-color: #444c56;
-    box-shadow: 0 6px 20px rgba(240, 246, 252, 0.06), 0 4px 12px rgba(0, 0, 0, 0.3);
+    background-color: rgba(240, 246, 252, 0.05);
+    box-shadow: 0 8px 20px rgba(240, 246, 252, 0.06), var(--shadow-sm);
 }
-
 .contact-icon--linkedin:hover {
     color: #0A66C2;
     border-color: #0A66C2;
-    box-shadow: 0 6px 20px rgba(10, 102, 194, 0.18), 0 4px 12px rgba(0, 0, 0, 0.3);
+    background-color: rgba(10, 102, 194, 0.06);
+    box-shadow: 0 8px 20px rgba(10, 102, 194, 0.18), var(--shadow-sm);
 }
-
-.contact-icon--email:hover {
-    color: #EA4335;
-    border-color: #EA4335;
-    box-shadow: 0 6px 20px rgba(234, 67, 53, 0.18), 0 4px 12px rgba(0, 0, 0, 0.3);
-}
-
 .contact-icon--facebook:hover {
     color: #1877F2;
     border-color: #1877F2;
-    box-shadow: 0 6px 20px rgba(24, 119, 242, 0.18), 0 4px 12px rgba(0, 0, 0, 0.3);
+    background-color: rgba(24, 119, 242, 0.06);
+    box-shadow: 0 8px 20px rgba(24, 119, 242, 0.18), var(--shadow-sm);
 }
 
-/* ==============================
-   Responsive
-   ============================== */
+/* =============================================
+   RESPONSIVE
+   ============================================= */
+
+@media (max-width: 680px) {
+    .contact-cta {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 1.5rem;
+        gap: 1.25rem;
+    }
+    .contact-cta__button { width: 100%; justify-content: center; }
+}
 
 @media (max-width: 480px) {
-    .contact-icons {
-        gap: 0.75rem;
-    }
-
+    .contact-socials { gap: 0.5rem; }
     .contact-icon {
-        width: 90px;
-        padding: 1rem 0.75rem;
-        font-size: 0.72rem;
+        padding: 0.65rem 1rem;
+        font-size: 0.82rem;
+        min-height: 44px;
     }
+}
 
-    .contact-icon svg {
-        width: 20px;
-        height: 20px;
-    }
+@media (max-width: 380px) {
+    .contact-icon { padding: 0.6rem 0.85rem; font-size: 0.8rem; }
+    .contact-cta  { padding: 1.25rem; }
 }

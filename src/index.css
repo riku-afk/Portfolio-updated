@@ -1,78 +1,193 @@
+/* =============================================
+   DESIGN TOKENS
+   ============================================= */
+
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+  /* Font */
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
 
-  color-scheme: dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #0B0F1A;
+  /* Backgrounds */
+  --clr-bg:            #0B0F1A;
+  --clr-surface:       #111827;
+  --clr-surface-hover: #161d35;
+  --clr-border:        #1e243d;
+  --clr-border-active: #2a3160;
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  /* Accent */
+  --clr-accent:        #646cff;
+  --clr-accent-dark:   #535bf2;
+  --clr-accent-glow:   rgba(100, 108, 255, 0.15);
+  --clr-accent-muted:  rgba(100, 108, 255, 0.08);
+  --clr-accent-subtle: rgba(100, 108, 255, 0.04);
+
+  /* Text — all pass WCAG AA on --clr-bg */
+  --clr-text-primary:   #e6e9f0;   /* headings, important — 14.5:1 */
+  --clr-text-secondary: #8892b0;   /* body, descriptions — 6.3:1  */
+  --clr-text-tertiary:  #7c83b8;   /* role, company — 5.1:1        */
+  --clr-text-muted:     #6b7280;   /* labels, decorative only       */
+
+  /* Status */
+  --clr-success:     #34d399;
+  --clr-success-bg:  rgba(52, 211, 153, 0.08);
+  --clr-success-bdr: rgba(52, 211, 153, 0.2);
+  --clr-warning:     #fbbf24;
+  --clr-warning-bg:  rgba(251, 191, 36, 0.08);
+  --clr-warning-bdr: rgba(251, 191, 36, 0.2);
+
+  /* Border radius */
+  --r-sm:   5px;
+  --r-md:   8px;
+  --r-lg:   12px;
+  --r-xl:   16px;
+  --r-full: 9999px;
+
+  /* Shadows */
+  --shadow-sm:           0 2px 8px rgba(0, 0, 0, 0.35);
+  --shadow-md:           0 4px 20px rgba(0, 0, 0, 0.4);
+  --shadow-lg:           0 8px 40px rgba(0, 0, 0, 0.5);
+  --shadow-accent:       0 0 24px rgba(100, 108, 255, 0.12);
+  --shadow-accent-lift:  0 8px 24px rgba(100, 108, 255, 0.28);
+
+  /* Transitions — tuned cubic-bezier per use-case */
+  --ease-fast:   120ms cubic-bezier(0.4, 0, 0.2, 1);   /* quick feedback: color, opacity  */
+  --ease-base:   200ms cubic-bezier(0.4, 0, 0.2, 1);   /* standard: borders, shadows       */
+  --ease-slow:   280ms cubic-bezier(0.4, 0, 0.2, 1);   /* sustained: background, backdrop  */
+  --ease-lift:   240ms cubic-bezier(0.25, 1, 0.5, 1);  /* card/button lift — snappy settle */
+  --ease-spring: 260ms cubic-bezier(0.34, 1.56, 0.64, 1); /* spring overshoot — small icons */
+  --ease-out:    680ms cubic-bezier(0.16, 1, 0.3, 1);  /* expo-out — page-load entrances   */
+
+  /* Layout */
+  --nav-height: 64px;
+  --max-width:  1100px;
 }
+
+/* =============================================
+   RESET
+   ============================================= */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* =============================================
+   BASE
+   ============================================= */
 
 html {
   scroll-behavior: smooth;
+  font-size: 16px;
   scrollbar-width: thin;
-  scrollbar-color: #2a3160 #0B0F1A;
+  scrollbar-color: var(--clr-border-active) var(--clr-bg);
 }
 
-::-webkit-scrollbar {
-  width: 5px;
-}
-
-::-webkit-scrollbar-track {
-  background: #0B0F1A;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #2a3160;
-  border-radius: 3px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #646cff;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
+::-webkit-scrollbar        { width: 5px; }
+::-webkit-scrollbar-track  { background: var(--clr-bg); }
+::-webkit-scrollbar-thumb  { background: var(--clr-border-active); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--clr-accent); }
 
 body {
-  margin: 0;
-  display: flex;
-  place-items: center;
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  line-height: 1.6;
+  font-weight: 400;
+  color: var(--clr-text-primary);
+  background-color: var(--clr-bg);
+  color-scheme: dark;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
   min-width: 320px;
   min-height: 100vh;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+/* =============================================
+   TYPOGRAPHY
+   ============================================= */
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--clr-text-primary);
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
+a {
   font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
+  color: var(--clr-accent);
+  text-decoration: none;
+  transition: color var(--ease-base);
 }
-button:hover {
-  border-color: #646cff;
+a:hover { color: var(--clr-accent-dark); }
+
+/* =============================================
+   ACCESSIBILITY — SKIP LINK
+   ============================================= */
+
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 1rem;
+  z-index: 9999;
+  padding: 0.5rem 1rem;
+  background: var(--clr-accent);
+  color: #fff;
+  font-weight: 600;
+  font-size: 0.875rem;
+  border-radius: 0 0 var(--r-md) var(--r-md);
+  text-decoration: none;
+  transition: top var(--ease-fast);
 }
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+.skip-link:focus { top: 0; outline: none; }
+
+/* =============================================
+   ACCESSIBILITY — FOCUS
+   ============================================= */
+
+:focus { outline: none; }
+
+:focus-visible {
+  outline: 2px solid var(--clr-accent);
+  outline-offset: 3px;
+  border-radius: var(--r-sm);
+}
+
+/* =============================================
+   SCROLL REVEAL UTILITY
+   Elements with [data-reveal] start hidden and
+   animate in when the global observer adds .visible
+   ============================================= */
+
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity   0.65s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+[data-reveal].visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* =============================================
+   REDUCED MOTION
+   Only disables looping/entrance animations —
+   keeps hover transitions working intentionally
+   ============================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration:       0.01ms !important;
+    animation-iteration-count: 1    !important;
+    scroll-behavior: auto           !important;
+  }
+
+  [data-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
 }
